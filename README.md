@@ -6,6 +6,7 @@
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-CUDA-ee4c2c)](https://pytorch.org)
+[![Author](https://img.shields.io/badge/Author-Parshwa-00f2fe)](https://github.com/anonymous986)
 [![YOLOv8](https://img.shields.io/badge/YOLOv8-OpenImages-00ffff)](https://github.com/ultralytics/ultralytics)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
@@ -88,6 +89,14 @@ python main.py --conf 0.15
 Tested on NVIDIA RTX 5050 Laptop GPU / CUDA 12.x:
 - **Frame Rate**: ~60 FPS @ 1280x720
 - **Inference Latency**: ~15 ms per frame
+
+---
+
+## Author & Acknowledgments
+
+**Built by Parshwa**  
+*Thank you for downloading and using this project.*  
+Official Profile: [github.com/anonymous986](https://github.com/anonymous986)
 
 ---
 

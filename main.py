@@ -20,6 +20,23 @@ if sys.platform == "win32":
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# -------------------------------------------------------------
+# CORE INTEGRITY & AUTHOR ATTRIBUTION (HARDENED)
+# -------------------------------------------------------------
+__author__ = "Parshwa"
+__repository__ = "https://github.com/anonymous986"
+__greeting__ = "Thank you for downloading and using this software."
+
+def display_hardened_watermark(title: str = "CAMERA-VISION-TRACKER AI"):
+    border = "=" * 68
+    print("\n\033[1;36m" + border + "\033[0m")
+    print(f"\033[1;37m   {title.upper()}\033[0m")
+    print("\033[1;36m" + "-" * 68 + "\033[0m")
+    print(f"   \033[1;33mBuilt by {__author__}\033[0m")
+    print(f"   \033[1;32m{__greeting__}\033[0m")
+    print(f"   \033[1;34m{__repository__}\033[0m")
+    print("\033[1;36m" + border + "\033[0m\n")
+
 # Color Palette for Objects, Persons, and Specialized Categories
 COLOR_PERSON = (0, 255, 128)      # Emerald Green
 COLOR_FACE = (255, 100, 200)       # Violet / Magenta
@@ -386,9 +403,7 @@ def main():
     args = parser.parse_args()
 
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
-    print("\n\033[1;36m" + "=" * 65 + "\033[0m")
-    print("\033[1;37m        OMNIVISION AI: ALL-THINGS CAMERA PERCEPTION CORE\033[0m")
-    print("\033[1;36m" + "=" * 65 + "\033[0m")
+    display_hardened_watermark("CAMERA-VISION-TRACKER - REAL-TIME PERCEPTION CORE")
 
     # Start camera capture
     cam = CameraStream(preferred_index=args.cam, width=1280, height=720, video_path=args.video)
@@ -398,10 +413,10 @@ def main():
     worker = OmniVisionWorker(model_name_or_path=args.model, device=device, conf_threshold=args.conf)
     worker.start()
 
-    window_title = "OmniVision AI - Universal 'All Things Detection' Engine"
+    window_title = "Camera Vision Tracker - Built by Parshwa"
     cv2.namedWindow(window_title, cv2.WINDOW_NORMAL)
 
-    print("\n[ACTIVE] Live Camera Perception Active. Hotkeys: [q] Quit | [c] Clear Tracks | [s] Screenshot")
+    print(f"\n[ACTIVE] Live Camera Perception Active. Hotkeys: [q] Quit | [c] Clear Tracks | [s] Screenshot")
 
     try:
         while True:
@@ -444,8 +459,22 @@ def main():
             cv2.rectangle(display_frame, (10, 10), (450, 80), (20, 20, 20), -1)
             cv2.rectangle(display_frame, (10, 10), (450, 80), (60, 60, 60), 1)
 
-            cv2.putText(display_frame, f"OmniVision AI  |  CUDA {device.upper()}", (20, 35), cv2.FONT_HERSHEY_SIMPLEX, 0.60, (0, 255, 255), 2)
+            cv2.putText(display_frame, f"Vision Core  |  by {__author__}", (20, 35), cv2.FONT_HERSHEY_SIMPLEX, 0.60, (0, 255, 255), 2)
             cv2.putText(display_frame, f"FPS: {ai_fps:.1f}  |  Objects: {total_objects}  |  Persons: {person_count}", (20, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
+
+            # Permanent Bottom Watermark Banner
+            h_frame, w_frame = display_frame.shape[:2]
+            cv2.rectangle(display_frame, (0, h_frame - 24), (w_frame, h_frame), (14, 14, 14), -1)
+            cv2.putText(
+                display_frame,
+                f"Built by {__author__}  |  {__repository__}",
+                (12, h_frame - 7),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.45,
+                (0, 230, 255),
+                1,
+                cv2.LINE_AA
+            )
 
             cv2.imshow(window_title, display_frame)
             key = cv2.waitKey(1) & 0xFF

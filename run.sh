@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-echo "========================================================"
-echo "    AudioSync AI - Terminal Karaoke & Vocal Isolator"
-echo "========================================================"
+echo "======================================================================"
+echo "  CAMERA-VISION-TRACKER - REAL-TIME PERCEPTION CORE"
+echo "  Built by Parshwa"
+echo "  Thank you for downloading and using this software."
+echo "  https://github.com/anonymous986"
+echo "======================================================================"
 
 if ! command -v python3 &> /dev/null; then
-    echo "[ERROR] python3 could not be found."
+    echo "[ERROR] Python 3 is not installed or not in PATH."
     exit 1
 fi
 
@@ -17,10 +20,10 @@ fi
 
 source venv/bin/activate
 
-python3 -c "import faster_whisper, soundfile, scipy" 2>/dev/null || {
-    echo "[SETUP] Installing dependencies..."
+if ! python3 -c "import ultralytics, cv2, torch" &> /dev/null; then
+    echo "[SETUP] Installing required dependencies..."
     pip install -r requirements.txt
-}
+fi
 
-echo "[LAUNCH] Starting AudioSync AI..."
+echo "[LAUNCH] Starting Camera Vision Tracker..."
 python3 main.py "$@"

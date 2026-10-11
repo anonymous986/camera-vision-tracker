@@ -1,8 +1,11 @@
 @echo off
 setlocal
-echo ========================================================
-echo     AudioSync AI - Terminal Karaoke & Vocal Isolator
-echo ========================================================
+echo ======================================================================
+echo   CAMERA-VISION-TRACKER - REAL-TIME PERCEPTION CORE
+echo   Built by Parshwa
+echo   Thank you for downloading and using this software.
+echo   https://github.com/anonymous986
+echo ======================================================================
 
 REM Check Python installation
 python --version >nul 2>&1
@@ -22,12 +25,12 @@ REM Activate venv
 call venv\Scripts\activate.bat
 
 REM Check and install dependencies
-python -c "import faster_whisper, soundfile, scipy" >nul 2>&1
+python -c "import ultralytics, cv2, torch" >nul 2>&1
 if %errorlevel% neq 0 (
     echo [SETUP] Installing required dependencies...
     pip install -r requirements.txt
 )
 
-echo [LAUNCH] Starting AudioSync AI...
+echo [LAUNCH] Starting Camera Vision Tracker...
 python main.py %*
 pause
