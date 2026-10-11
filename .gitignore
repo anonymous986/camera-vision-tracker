@@ -1,0 +1,30 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python cache & compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Generated media and stems (user generated)
+isolated_vocals/
+conditioned_audio/
+*.raw.wav
+*.clean.wav
+*.mp3
+*.mp4
+*.wav
+!tests/*.mp3
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# HuggingFace & PyTorch
+whisper_models/
+*.bin
